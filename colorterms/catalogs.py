@@ -59,7 +59,7 @@ def get_catalog_list():
 
 
 def load_catalogs(verbose=True):
-    """Load all available catalogs and return a lost of Catalog objects."""
+    """Load all available catalogs and return a list of Catalog objects."""
     catalogs = []
     catalog_names = get_catalog_list()
     for catalog in catalog_names:

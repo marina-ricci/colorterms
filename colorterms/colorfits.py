@@ -170,7 +170,7 @@ class Colorterms(object):
         """
         catalogs = list(self.catalogs.keys()) if catalogs is None else catalogs
         self._make_pairing(first_fset, second_fset)
-        self._compute_magnitudes(first_fset, second_fset)
+        self._compute_magnitudes(first_fset, second_fset, catalog_list=catalogs)
         print("INFO: Computing colorterms to go from %s to %s" % (first_fset, second_fset))
         for filt in self.pairs[second_fset][first_fset]:
             localdic = self.pairs[second_fset][first_fset][filt]
@@ -195,8 +195,11 @@ class Colorterms(object):
                 # By Catalog Data (for the final plots)
                 bcd = np.transpose([self._get_data(first_fset, second_fset, filt, color, [catalog],
                                                    cuts) for catalog in catalogs])
-                colfit.plots(dirname="%s_%s" % (first_fset, second_fset),
-                             bycat_data=np.transpose([bcd[0], bcd[1], bcd[2], catalogs]))
+                if len(catalogs) > 1:
+                    colfit.plots(dirname="%s_%s" % (first_fset, second_fset),
+                                bycat_data=np.transpose([bcd[0], bcd[1], bcd[2], catalogs]))
+                else:
+                    colfit.plots(dirname="%s_%s" % (first_fset, second_fset))
                 results = localdic['results'][",".join(color)] = {}
                 for order in colfit.polyfits_outputs:
                     if verbose:
@@ -265,7 +268,7 @@ class Colorterms(object):
         catalogs = self.catalogs.keys() if catalogs is None else catalogs
 
         self._make_pairing(first_fset, second_fset)
-        self._compute_magnitudes(first_fset, second_fset)
+        self._compute_magnitudes(first_fset, second_fset, catalog_list=catalogs)
         for filt in self.pairs[second_fset][first_fset]:
             fig = plt.figure()
             ax = fig.add_subplot(111)
