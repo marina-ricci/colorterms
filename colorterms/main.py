@@ -120,7 +120,7 @@ def colorterms(argv=None):
         # Build the final list of catalogs
         args.catalogs = [cat for cat in catalogs if cat not in args.catalogs] \
                         if mode == 'exclude' \
-                           else [cat for cat in catalogs if cat not in args.catalogs]
+                           else [cat for cat in catalogs if cat in args.catalogs]
         print("INFO: The following list of catalogs will be used:")
         for cat in sorted(args.catalogs):
             print(" -", cat)
