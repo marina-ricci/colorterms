@@ -4,7 +4,8 @@
 from glob import glob
 import numpy as np
 import pylab as plt
-import pyfits
+#import pyfits
+import astropy.io.fits as fits
 from pkg_resources import resource_filename
 from . import spectools
 
@@ -138,7 +139,7 @@ def load_calspec_catalog(catpath):
             locd = datadict[target]  # shortcut
             if locd[suffix] == '':
                 continue
-            spec = pyfits.open(catpath + "/%s%s.fits" % (locd["prefix"], locd[suffix]))[1]
+            spec = fits.open(catpath + "/%s%s.fits" % (locd["prefix"], locd[suffix]))[1]
             spectra.append(spectools.Spectrum(spec.data.WAVELENGTH, spec.data.FLUX,
                                               object_name=locd['name'], object_type=locd['type']))
         catalogs.append(Catalog("calspec_%s" % suffix, np.array(spectra), catpath=catpath))
