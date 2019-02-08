@@ -8,6 +8,7 @@ from argparse import ArgumentParser
 from argparse import ArgumentDefaultsHelpFormatter
 from pkg_resources import resource_filename
 from numpy import array as nparray
+import numpy as np
 import yaml
 from . import filtersets as Filtersets
 from . import catalogs as Catalogs
@@ -77,7 +78,9 @@ def colorterms(argv=None):
 
         # Exit
         sys.exit()
-
+        
+    if args.sigma is None: args.sigma = np.inf 
+    
     # Make sure that the input filter sets are valid
     filtersets = list(Filtersets.Filters(load=False).filtersets.keys())
     if args.sets == 'all':
