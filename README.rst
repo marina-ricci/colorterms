@@ -2,7 +2,8 @@
    :target: https://landscape.io/github/nicolaschotard/colorterms/master
    :alt: Code Health
    
-cd colorterm 
+cd colorterm
+
 sudo python setup.py install
 
 colorterms
