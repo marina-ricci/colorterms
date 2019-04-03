@@ -6,6 +6,9 @@ cd colorterm
 
 sudo python setup.py install
 
+    #catpaths = glob(resource_filename('colorterms', 'data/catalogs/*')) #seems not to work anymore
+    catpaths = glob(resource_filename('colorterms','data/catalogs')+'/**/')
+
 colorterms
 ==========
 
