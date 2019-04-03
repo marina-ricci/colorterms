@@ -1,6 +1,9 @@
 .. image:: https://landscape.io/github/nicolaschotard/colorterms/master/landscape.svg?style=flat
    :target: https://landscape.io/github/nicolaschotard/colorterms/master
    :alt: Code Health
+   
+cd colorterm 
+sudo python setup.py install
 
 colorterms
 ==========
